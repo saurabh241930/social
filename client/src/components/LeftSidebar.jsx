@@ -13,8 +13,8 @@ import {
   Input,
   useTheme,
 } from "@mui/material";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -78,7 +78,6 @@ export default function LeftSidebar() {
               sx={{
                 borderRadius: "28px",
                 margin: ".5rem 0",
-                backgroundColor:'#0077B5'
               }}
             >
               <ListItemIcon>
@@ -89,33 +88,43 @@ export default function LeftSidebar() {
                   primaryTypographyProps={{
                     fontSize: "18px",
                     color: theme.palette.action.active,
-                    
                   }}
                   primary="Home"
                 />
               </Hidden>
             </ListItem>
           </NavLink>
-          <ListItem
-            button
-            sx={{
-              borderRadius: "28px",
-              margin: ".5rem 0",
-            }}
+          <NavLink
+          to="/messages"
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+            backgroundColor: "inherit",
+          }}
           >
-            <ListItemIcon>
-              <BookmarkIcon fontSize="medium" color="action" />
-            </ListItemIcon>
-            <Hidden lgDown>
-              <ListItemText
-                primaryTypographyProps={{
-                  fontSize: "18px",
-                  color: theme.palette.action.active,
-                }}
-                primary="Bookmarks"
-              />
-            </Hidden>
-          </ListItem>
+
+            <ListItem
+              button
+              sx={{
+                borderRadius: "28px",
+                margin: ".5rem 0",
+              }}
+            >
+              <ListItemIcon>
+                <ChatBubbleOutlineIcon fontSize="medium" color="action" />
+              </ListItemIcon>
+              <Hidden lgDown>
+                <ListItemText
+                  primaryTypographyProps={{
+                    fontSize: "18px",
+                    color: theme.palette.action.active,
+                  }}
+                  primary="Messages"
+                />
+              </Hidden>
+            </ListItem>
+
+          </NavLink>
           <ListItem
             button
             sx={{

@@ -6,13 +6,13 @@ const messageSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: "Post",
+      ref: "User",
     },
-    author: {
+    relativeUserId: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    text: {
+    messageText: {
       type: String,
       required: true,
     },

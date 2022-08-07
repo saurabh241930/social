@@ -6,6 +6,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { Route, Switch } from "react-router";
 import Home from "./pages/Home";
 import PostDetails from "./pages/PostDetails";
+import Messages from "./pages/Messages";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
@@ -43,6 +44,11 @@ function App() {
       <PrivateRoute exact path="/">
         <Layout>
           <Home />
+        </Layout>
+      </PrivateRoute>
+      <PrivateRoute exact path="/messages">
+        <Layout>
+          <Messages />
         </Layout>
       </PrivateRoute>
       <Route path="/login">
