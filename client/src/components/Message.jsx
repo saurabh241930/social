@@ -20,7 +20,7 @@ export default function Message({ message_id, message }) {
     return (
         <>
         <Link
-        to={`/`}
+        to={`/messages/${message.relativeUserId._id}`}
         style={{ textDecoration: "none", color: "inherit" }}
         >
              <Box

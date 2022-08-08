@@ -14,6 +14,12 @@ export const getMyMessages = createAsyncThunk("message/getAllMessages", async ()
 });
 
 
+export const getMessagesOf = createAsyncThunk("message/getMessagesOf", async (relativeUserId) => {
+    const { data } = await axios.get("/api/message/ofuser/"+relativeUserId);
+    
+    return data;
+});
+
 
 export const messageSlice = createSlice({
     name: 'message',
@@ -28,6 +34,16 @@ export const messageSlice = createSlice({
             state.messages = action.payload.response.messages;
         },
         [getMyMessages.rejected]: (state, action) => {
+            state.status = "failed";
+        },
+        [getMessagesOf.pending]: (state, action) => {
+            state.status = "loading";
+        },
+        [getMessagesOf.fulfilled]: (state, action) => {
+            state.status = "success";
+            state.messageDetails = action.payload.response.messages;
+        },
+        [getMessagesOf.rejected]: (state, action) => {
             state.status = "failed";
         }
 

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { setAuth } from "./redux/authSlice";
+import Conversation from "./pages/Conversation";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,11 @@ function App() {
       <PrivateRoute exact path="/messages">
         <Layout>
           <Messages />
+        </Layout>
+      </PrivateRoute>
+      <PrivateRoute exact path="/messages/:id">
+        <Layout>
+          <Conversation />
         </Layout>
       </PrivateRoute>
       <Route path="/login">

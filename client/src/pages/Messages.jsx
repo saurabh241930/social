@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyMessages } from "../redux/messageSlice";
 import AddPost from "../components/AddPost";
 import Message from "../components/Message";
+import { Link } from "react-router-dom";
+
 
 export default function Messages() {
   const dispatch = useDispatch();
