@@ -74,63 +74,7 @@ export default function Message({ message_id, message }) {
                       </Typography>
                     </Box>
                   </Grid>
-                  {/* <Grid item>
-                    {post.author._id === _id && (
-                      <IconButton
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleClick(e);
-                        }}
-                      >
-                        <MoreHorizIcon />
-                      </IconButton>
-                    )}
-                    <Menu
-                      id="basic-menu"
-                      anchorEl={anchorEl}
-                      open={open}
-                      onClose={handleClose}
-                      onClick={(e) => e.stopPropagation()}
-                      MenuListProps={{
-                        "aria-labelledby": "basic-button",
-                      }}
-                    >
-                      <MenuItem onClick={(e) => handleDeletePost(e)}>
-                        Delete Post
-                      </MenuItem>
-                    </Menu>
-                  </Grid> */}
                 </Grid>
-                {/* <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  marginRight="5rem"
-                  marginTop=".8rem"
-                >
-                  <IconButton
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleModalOpen();
-                    }}
-                    size="small"
-                  >
-                    <ChatBubbleOutlineIcon fontSize="small" />
-                  </IconButton>
-                  <IconButton size="small">
-                    <SyncIcon fontSize="small" />
-                  </IconButton>
-                  <IconButton onClick={handleLike} size="small">
-                    {post.isLiked ? (
-                      <FavoriteIcon fontSize="small" />
-                    ) : (
-                      <FavoriteBorderIcon fontSize="small" />
-                    )}
-                  </IconButton>
-                  <IconButton size="small">
-                    <IosShareIcon fontSize="small" />
-                  </IconButton>
-                </Box> */}
               </Box>
             </Grid>
           </Grid>

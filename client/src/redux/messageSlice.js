@@ -15,8 +15,7 @@ export const getMyMessages = createAsyncThunk("message/getAllMessages", async ()
 
 
 export const getMessagesOf = createAsyncThunk("message/getMessagesOf", async (relativeUserId) => {
-    const { data } = await axios.get("/api/message/ofuser/"+relativeUserId);
-    
+    const { data } = await axios.get("/api/message/ofuser/" + relativeUserId);
     return data;
 });
 

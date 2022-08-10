@@ -12,10 +12,13 @@ import { Link } from "react-router-dom";
 
 export default function Messages() {
   const dispatch = useDispatch();
-  const { status, messages } = useSelector((state) => state.message);
+
   useEffect(() => {
     dispatch(getMyMessages());
   }, [dispatch]);
+  
+  const { status, messages } = useSelector((state) => state.message);
+  
 
   return (
     <Box>
@@ -24,11 +27,6 @@ export default function Messages() {
           <Grid item>
             <Typography variant="h6">Messages</Typography>
           </Grid>
-          {/* <Grid item>
-            <IconButton>
-              <AssistantIcon />
-            </IconButton>
-          </Grid> */}
         </Grid>
       </Box>
       <Box height="92vh" sx={{ overflowY: "scroll" }}>
