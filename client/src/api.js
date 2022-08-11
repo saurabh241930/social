@@ -78,3 +78,14 @@ export const unfollowingAccount = async (follow) => {
     alert("Something went wrong.");
   }
 };
+
+
+export const sendMessage = async (message) => {
+  try {
+    const { data } = await axios.post("/api/message/send/",message);
+    return data;
+  } catch (error) {
+    alert("Something went wrong.");
+  }
+};
+

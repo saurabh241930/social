@@ -20,7 +20,7 @@ export default function Message({ message_id, message }) {
     return (
         <>
         <Link
-        to={`/messages/${message.relativeUserId._id}`}
+        to={`/messages/${message.userdetails[0]._id}`}
         style={{ textDecoration: "none", color: "inherit" }}
         >
              <Box
@@ -33,7 +33,7 @@ export default function Message({ message_id, message }) {
         >
           <Grid container flexWrap="nowrap">
             <Grid item sx={{ paddingRight: "1rem" }}>
-              <Link to={`/profile/${message.relativeUserId._id}`}>
+              <Link to={`/profile/${message.userdetails[0]._id}`}>
                 <img src="/logo.png" alt="lgoog" width="50px" />
               </Link>
             </Grid>
@@ -50,12 +50,12 @@ export default function Message({ message_id, message }) {
                       <Typography
                         sx={{ fontSize: "16px", fontWeight: 500, mr: "6px" }}
                       >
-                        {message.relativeUserId.name}
+                        {message.userdetails[0].name}
                       </Typography>
                       <Typography
                         sx={{ fontSize: "15px", mr: "6px", color: "#555" }}
                       >
-                        @{message.relativeUserIdhandle}
+                        @{message.userdetails[0].handle}
                       </Typography>
                       <Typography
                         sx={{ fontSize: "15px", mr: "6px", color: "#555" }}
@@ -65,12 +65,12 @@ export default function Message({ message_id, message }) {
                       <Typography
                         sx={{ fontSize: "15px", mr: "6px", color: "#555" }}
                       >
-                        {formatDistanceToNow(new Date(message.createdAt))}
+                        {formatDistanceToNow(new Date(message.last_senton))}
                       </Typography>
                     </Box>
                     <Box>
                       <Typography sx={{ fontSize: "15px", color: "#555" }}>
-                        {message.messageText}
+                        {message.last_text}
                       </Typography>
                     </Box>
                   </Grid>
