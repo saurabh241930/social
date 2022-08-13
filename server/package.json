@@ -5,17 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node local.js",
+    "dev": "nodemon local.js"
   },
   "keywords": [
     "Twitter",
     "facebook",
     "social-media"
   ],
-  "author": "Wasif Baliyan",
+  "author": "Saurabh",
   "license": "ISC",
   "dependencies": {
+    "aws-serverless-express": "^3.4.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -24,10 +25,12 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.8",
     "morgan": "^1.10.0",
-    "pusher": "^5.1.1-beta"
+    "pusher": "^5.1.1-beta",
+    "serverless-http": "^3.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "serverless": "^3.21.0"
   },
   "engines": {
     "node": "14.16.1"
