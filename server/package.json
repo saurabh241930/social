@@ -1,5 +1,5 @@
 {
-  "name": "probook-server",
+  "name": "server",
   "version": "1.0.0",
   "description": "A social media app. ",
   "main": "index.js",
@@ -23,14 +23,17 @@
     "express": "^4.17.1",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
     "mongoose": "^6.0.8",
     "morgan": "^1.10.0",
     "pusher": "^5.1.1-beta",
-    "serverless-http": "^3.0.1"
+    "serverless-http": "^3.0.1",
+    "slspress": "^2.2.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.13",
-    "serverless": "^3.21.0"
+    "serverless": "^3.21.0",
+    "serverless-offline": "^9.2.0"
   },
   "engines": {
     "node": "14.16.1"

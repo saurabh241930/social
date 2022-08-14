@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require('morgan');
-const session    = require('express-session');
+const session = require('express-session');
+const sls = require('serverless-http')
+
 
 
 require("dotenv").config();
@@ -47,7 +49,9 @@ app.use("/api/profile", profiles);
 app.use("/api/comments", comments);
 app.use("/api/followers", followers);
 app.use("/api/followings", followings);
-app.use("/api/message",messages)
+app.use("/api/message", messages)
 
-const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+module.exports.server = sls(app)
+

@@ -10,6 +10,7 @@ const initialState = {
 
 export const getMyMessages = createAsyncThunk("message/getAllMessages", async () => {
     const { data } = await axios.get("/api/message/all");
+    console.log(data,"FF");
     return data;
 });
 
@@ -30,7 +31,7 @@ export const messageSlice = createSlice({
         },
         [getMyMessages.fulfilled]: (state, action) => {
             state.status = "success";
-            state.messages = action.payload.response.messages;
+            state.messages = action.payload.response.response;
         },
         [getMyMessages.rejected]: (state, action) => {
             state.status = "failed";

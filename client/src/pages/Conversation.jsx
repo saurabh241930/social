@@ -43,28 +43,17 @@ export default function Conversation() {
             console.log(data);
             dispatch(getMessagesOf(id));
 
-          });
-          console.log(channel,"CHANNEL");
-    },[])
-
-
+        });
+    }, [])
 
     useEffect(() => {
         dispatch(getMessagesOf(id));
     }, [dispatch, id]);
 
-
-
-
-
     const { status, messages, messageDetails } = useSelector((state) => state.message)
     const [message_input, setMessageInput] = useState('')
-
-
-
-
     const handleMessageSubmit = async () => {
-        const data = await sendMessage({ "relativeUserId": relativeUserinfo._id, "messageText": message_input });
+        const data = await sendMessage({ "relativeUserId": relativeUserinfo.id, "messageText": message_input });
         if (data) {
             dispatch(getMessagesOf(id));
             setMessageInput('')
@@ -72,14 +61,13 @@ export default function Conversation() {
 
     }
 
-    const relativeUserinfo = messages ? messages.find(message => message._id === id).userdetails[0] : null;
-
+    const relativeUserinfo = messages ? messages.find(message => message.userdetails.id === id).userdetails : null;
 
 
     return (
         <>
             <Box>
-                <Box borderBottom="1px solid #ccc" padding="8px 20px">
+                <Box borderBottom="1px solid #ccc" sx={{ height: '10vh'}}>
                     <Grid container justifyContent="space-between" alignItems="center">
                         <Grid item>
                             <span>
@@ -91,8 +79,8 @@ export default function Conversation() {
                         </Grid>
                     </Grid>
                 </Box>
-                <Box height="83vh" sx={{ overflowY: "scroll" }}>
-                    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                <Box sx={{ overflowY: "scroll", height: '80vh' }}>
+                    <List sx={{ width: '100%' }}>
                         {Array.isArray(messageDetails) && messageDetails.map((message) =>
                             <>
                                 <ListItem key={message._id}>
@@ -105,14 +93,11 @@ export default function Conversation() {
                                     <span style={{ color: "grey", fontSize: '10px' }}>{formatDistanceToNow(new Date(message.createdAt))} ago</span>
                                 </ListItem>
                             </>)}
-
-
-
                     </List>
                 </Box>
-                <Box height="7vh" style={{ position: 'relative', bottom: '0', width: '100%' }}>
+                <Box sx={{ position: 'relative', bottom: '0', width: '100%', height: '10vh' }}>
                     <Input
-                        style={{ backgroundColor: '#EEEEEE', padding: '10px' }}
+                        style={{ backgroundColor: '#EEEEEE',position:'absolute',top:'50%',transform:'translateY(-50%)',padding:'2px'}}
                         value={message_input}
                         onChange={(e) => setMessageInput(e.target.value)}
                         type="text"
@@ -140,7 +125,10 @@ export default function Conversation() {
 
                         }
                     />
+
                 </Box>
+
+
             </Box>
         </>
     )

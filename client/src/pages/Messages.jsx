@@ -37,7 +37,7 @@ export default function Messages() {
           )}
         </Box>
         {status === "success" &&
-          messages.map((message) => <Message key={message._id} message={message}/>)}
+          messages.map((message) => <Message key={message.message_id} message={message}/>)}
       </Box>
     </Box>
   );
