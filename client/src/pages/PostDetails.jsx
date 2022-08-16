@@ -99,11 +99,18 @@ export default function PostDetails() {
           <Box padding="0 20px">
             <Box>
               <Grid container alignItems="center">
-                <Grid item>
-                  <img src="/logo.png" alt="lgogo" width="60px" />
-                </Grid>
+
+                {(postDetails.imageUrl !== "") &&
+                  <Grid item flexGrow="1">
+                    <img src={postDetails.imageUrl} alt="r" style={{ maxHeight: "100%", maxWidth: "100%" }} />
+                  </Grid>
+                }
+
                 <Grid item flexGrow="1">
-                  <Grid container justifyContent="space-between">
+                  <Grid container justifyContent="flex-start">
+                    <Grid item>
+                      <img src="/logo.png" alt="lgogo" width="60px" />
+                    </Grid>
                     <Grid item>
                       <Typography sx={{ fontSize: "16px", fontWeight: "500" }}>
                         {postDetails.author && postDetails.author.name}

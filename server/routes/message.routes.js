@@ -36,6 +36,8 @@ router.get("/ofuser/:relativeUserId", async (req, res) => {
         }
 
 
+        console.log(messages);
+
         res.status(200).json({
             message: "Messages fetched successfully.",
             response: {
@@ -76,13 +78,9 @@ router.get("/all", async (req, res) => {
         //     }
         // ])
 
-        const messages = await Message.find(
-            {
-                $or: [{ "userId": mongoose.Types.ObjectId(req.user._id) },
-                {
-                    "relativeUserId:": mongoose.Types.ObjectId(req.user._id)
-                }]
-            }).sort('createdAt')
+        const query = { $or: [ {'userId': req.user._id }, {'relativeUserId':req.user._id} ] }
+
+        const messages = await Message.find(query).sort('createdAt')
 
         if (!messages) {
             return res.status(404).json({
@@ -90,22 +88,26 @@ router.get("/all", async (req, res) => {
             });
         }
 
+
         const groupedMessage = _.groupBy(messages, messages => messages.userId)
         const userIds = Object.keys(groupedMessage).map(e => mongoose.Types.ObjectId(e))
         const userInfo = await User.find({ '_id': { $in: userIds } })
 
+
+
         const response = []
 
         userInfo.map(e => {
-            response.push({
-                'userdetails': { 'id': e['_id'], 'name': e['name'], 'handle': e['handle'], 'email': e['email'] },
-                'last_text': groupedMessage[e['id']] && groupedMessage[e['id']].length > 0 && groupedMessage[e['id']].at(-1)['messageText'],
-                'last_senton': groupedMessage[e['id']] && groupedMessage[e['id']].length > 0 && groupedMessage[e['id']].at(-1)['createdAt'],
-                'message_id':groupedMessage[e['id']] && groupedMessage[e['id']].length > 0 && groupedMessage[e['id']].at(-1)['_id']
-            })
+
+            if (e['_id'].toString() !== req.user._id.toString()) {
+                response.push({
+                    'userdetails': { 'id': e['_id'], 'name': e['name'], 'handle': e['handle'], 'email': e['email'] },
+                    'last_text': groupedMessage[e['id']] && groupedMessage[e['id']].length > 0 && groupedMessage[e['id']].at(-1)['messageText'],
+                    'last_senton': groupedMessage[e['id']] && groupedMessage[e['id']].length > 0 && groupedMessage[e['id']].at(-1)['createdAt'],
+                    'message_id': groupedMessage[e['id']] && groupedMessage[e['id']].length > 0 && groupedMessage[e['id']].at(-1)['_id']
+                })
+            }
         })
-
-
 
 
         res.status(200).json({

@@ -7,8 +7,11 @@ const postSchema = new Schema(
     text: {
       type: String,
       required: true,
-      maxlength: 280,
-      minlength: 5,
+      minlength: 5
+    },
+    imageUrl:{
+      type:String,
+      default:""
     },
     author: {
       type: Schema.Types.ObjectId,

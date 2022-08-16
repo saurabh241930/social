@@ -5,6 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
+import { TextareaAutosize } from "@mui/material";
 import {
   Button,
   Grid,
@@ -32,8 +33,13 @@ export default function LeftSidebar() {
   const { _id } = JSON.parse(localStorage.getItem("login"));
 
   const [openModal, setOpenModal] = React.useState(false);
+  const [showAddImage, setShowImage] = React.useState(false);
+  const [image, setImage] = React.useState("");
+  const [imageUrl, setUrl] = React.useState("");
   const handleModalClose = () => {
     setOpenModal(false);
+    setImage("")
+    setShowImage(false)
   };
 
   const handleModalOpen = () => {
@@ -42,12 +48,29 @@ export default function LeftSidebar() {
 
   const [postText, setPostText] = React.useState("");
   const handleAddPost = async () => {
-    const data = await addPost({ text: postText });
+    const data = await addPost({ text: postText , imageUrl});
     if (data) {
       dispatch(getPosts());
       setPostText("");
     }
   };
+
+  const uploadImage = () => {
+    const data = new FormData()
+    data.append("file", image)
+    data.append("upload_preset", "upload")
+    data.append("cloud_name", "dxotafsfa")
+    fetch("  https://api.cloudinary.com/v1_1/dxotafsfa/image/upload", {
+      method: "post",
+      body: data
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data);
+        setUrl(data.url)
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <>
@@ -95,12 +118,12 @@ export default function LeftSidebar() {
             </ListItem>
           </NavLink>
           <NavLink
-          to="/messages"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            backgroundColor: "inherit",
-          }}
+            to="/messages"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              backgroundColor: "inherit",
+            }}
           >
 
             <ListItem
@@ -240,23 +263,35 @@ export default function LeftSidebar() {
         >
           <Box>
             <Grid container>
-              <Grid item>
+              {/* <Grid item>
                 <img src="/logo.png" alt="logo" width="60px" />
-              </Grid>
-              <Grid item flexGrow="1">
+              </Grid> */}
+              <Grid item xs={12} flexGrow="1">
                 <Box padding=".5rem 0">
-                  <Input
+                  <TextareaAutosize
                     value={postText}
                     onChange={(e) => setPostText(e.target.value)}
                     multiline
                     rows="2"
                     disableUnderline
                     type="text"
-                    placeholder="What's happening?"
-                    sx={{ width: "100%" }}
+                    placeholder="What is your post about...."
+                    style={{ width: "100%",height:'20vh',outline: 'none' ,border:'none'}}
                   />
                 </Box>
               </Grid>
+              {(imageUrl === "")?
+                (<Grid item xs={12}>
+                  {!showAddImage && <Button onClick={() => setShowImage(true)}>+ Add Image</Button>}
+                  {showAddImage && <> <Input type="file" onChange={(e) => setImage(e.target.files[0])} /><Button onClick={uploadImage}>Upload</Button> </>}
+                </Grid>)
+                :
+                (<Grid item xs={12}> <img style={{maxHeight:"100%",maxWidth:"100%"}} src={imageUrl} alt="ss" /> </Grid>)
+              }
+              
+
+
+
             </Grid>
           </Box>
         </Modal>
