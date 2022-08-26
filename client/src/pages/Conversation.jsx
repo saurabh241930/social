@@ -43,6 +43,8 @@ export default function Conversation() {
             console.log(data);
             dispatch(getMessagesOf(id));
 
+            // TODO : do cleanup
+
         });
     }, [])
 
