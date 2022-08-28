@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { sleep } from "../utils/sleep";
 
 const initialState = {
   status: "idle",
@@ -9,8 +10,9 @@ const initialState = {
   comments: [],
 };
 
-export const getPosts = createAsyncThunk("post/getPosts", async () => {
-  const { data } = await axios.get("/api/posts");
+export const getPosts = createAsyncThunk("post/getPosts", async (pageno) => {
+  await sleep(3000)
+  const { data } = await axios.get("/api/posts/"+pageno);
   return data;
 });
 
@@ -44,7 +46,7 @@ export const postSlice = createSlice({
     },
     [getPosts.fulfilled]: (state, action) => {
       state.status = "success";
-      state.posts = action.payload.response.posts;
+      state.posts = [...state.posts,...action.payload.response.posts] ;
     },
     [getPosts.rejected]: (state, action) => {
       state.status = "failed";

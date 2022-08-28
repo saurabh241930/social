@@ -1,19 +1,32 @@
 import { CircularProgress, Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useEffect } from "react";
+import React, { useEffect,useMemo } from "react";
 import AssistantIcon from "@mui/icons-material/Assistant";
 import Post from "../components/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/postSlice";
 import AddPost from "../components/AddPost";
+import useLazyFetch from "../hooks/useLazyFetch";
 
 export default function Home() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { status, posts } = useSelector((state) => state.post);
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+  const {loading,loadMoreRef} = useLazyFetch(getPosts)
 
+  // const { profile, profilestatus } = useSelector((state) => state.auth);
+
+  // useEffect(() => {
+  //   dispatch(getPosts());
+  // }, [dispatch]);
+
+
+const renderedPostList = useMemo(() => (
+  posts.map((post) => {
+    return( <Post key={post._id.toString()} post={post} />)
+  })
+), [posts]) 
+
+  
   return (
     <Box>
       <Box borderBottom="1px solid #ccc" padding="8px 20px">
@@ -35,8 +48,8 @@ export default function Home() {
             <CircularProgress size={20} color="primary" />
           )}
         </Box>
-        {status === "success" &&
-          posts.map((post) => <Post key={post._id} post={post} />)}
+        {renderedPostList}
+        <div style={{height:"50px",width:"100px",backgroundColor:"red"}} ref={loadMoreRef}>{loading && <p>loading...</p>}</div>
       </Box>
     </Box>
   );

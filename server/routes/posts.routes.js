@@ -3,10 +3,16 @@ const router = express.Router();
 const Post = require("../models/post.model");
 const Like = require("../models/like.model");
 
-router.get("/", async (req, res) => {
+router.get("/:pageno", async (req, res) => {
   try {
     const userId = req.user._id;
+    const page = parseInt(req.params.pageno)
+    const limit = 3
+    const skip = (page !== 1)? page*limit : 0  
+
     const posts = await Post.find()
+      .skip(skip)
+      .limit(limit)
       .sort({ createdAt: -1 })
       .populate("author")
       .exec();
