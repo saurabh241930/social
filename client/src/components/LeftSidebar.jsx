@@ -25,6 +25,7 @@ import { Link, NavLink } from "react-router-dom";
 import Modal from "./Modal";
 import { getPosts } from "../redux/postSlice";
 import { addPost } from "../api";
+import {Work} from "@mui/icons-material"
 
 export default function LeftSidebar() {
   const theme = useTheme();
@@ -84,7 +85,7 @@ export default function LeftSidebar() {
               backgroundColor: "inherit",
             }}
           >
-            <img src="/logo.png" alt="logo" width="50px" />
+            <img src="/logo.png" alt="logo" width="70px" />
           </Link>
         </Box>
         <List>
@@ -104,13 +105,13 @@ export default function LeftSidebar() {
               }}
             >
               <ListItemIcon>
-                <HomeIcon fontSize="medium" color="action" />
+                <HomeIcon fontSize="medium" style={{color:"white"}} />
               </ListItemIcon>
               <Hidden lgDown>
                 <ListItemText
                   primaryTypographyProps={{
                     fontSize: "18px",
-                    color: theme.palette.action.active,
+                    color: "white",
                   }}
                   primary="Home"
                 />
@@ -134,13 +135,13 @@ export default function LeftSidebar() {
               }}
             >
               <ListItemIcon>
-                <ChatBubbleOutlineIcon fontSize="medium" color="action" />
+                <ChatBubbleOutlineIcon fontSize="medium" style={{color:"white"}} />
               </ListItemIcon>
               <Hidden lgDown>
                 <ListItemText
                   primaryTypographyProps={{
                     fontSize: "18px",
-                    color: theme.palette.action.active,
+                    color: "white",
                   }}
                   primary="Messages"
                 />
@@ -156,15 +157,15 @@ export default function LeftSidebar() {
             }}
           >
             <ListItemIcon>
-              <FavoriteIcon fontSize="medium" color="action" />
+              <Work fontSize="medium" style={{color:"white"}} />
             </ListItemIcon>
             <Hidden lgDown>
               <ListItemText
                 primaryTypographyProps={{
                   fontSize: "18px",
-                  color: theme.palette.action.active,
+                  color: "white",
                 }}
-                primary="Likes"
+                primary="Jobs"
               />
             </Hidden>
           </ListItem>
@@ -184,13 +185,13 @@ export default function LeftSidebar() {
               }}
             >
               <ListItemIcon>
-                <PersonOutlineIcon fontSize="medium" color="action" />
+                <PersonOutlineIcon fontSize="medium" style={{color:"white"}} />
               </ListItemIcon>
               <Hidden lgDown>
                 <ListItemText
                   primaryTypographyProps={{
                     fontSize: "18px",
-                    color: theme.palette.action.active,
+                    color: "white",
                   }}
                   primary="Profile"
                 />
@@ -209,13 +210,13 @@ export default function LeftSidebar() {
             }}
           >
             <ListItemIcon>
-              <LogoutIcon fontSize="medium" color="action" />
+              <LogoutIcon fontSize="medium" style={{color:"white"}} />
             </ListItemIcon>
             <Hidden lgDown>
               <ListItemText
                 primaryTypographyProps={{
                   fontSize: "18px",
-                  color: theme.palette.action.active,
+                  color: "white",
                 }}
                 primary="Logout"
               />
@@ -226,12 +227,11 @@ export default function LeftSidebar() {
           <Button
             onClick={handleModalOpen}
             variant="contained"
-            color="primary"
-            fullWidth
+            color="success"
             style={{
-              borderRadius: "28px",
-              padding: "10px",
+              borderRadius: "8px",
               textTransform: "capitalize",
+              width:"90%"
             }}
           >
             Post

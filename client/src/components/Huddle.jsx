@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { followAccount, followingAccount } from "../api";
 import { getFollowers, getFollowings } from "../redux/followSlice";
 
-export default function WhoToFollow({ user }) {
+export default function Connect({ user }) {
   const theme = useTheme();
   const { _id } = JSON.parse(localStorage.getItem("login"));
   const dispatch = useDispatch();

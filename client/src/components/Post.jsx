@@ -86,6 +86,7 @@ export default function Post({ post, profile }) {
             },
           }}
         >
+           <img src={post.imageUrl} alt="ff" style={{maxHeight:"100%",maxWidth:"100%"}} />
           <Grid container flexWrap="nowrap">
             <Grid item sx={{ paddingRight: "1rem" }}>
               <Link to={`/profile/${post.author._id}`}>

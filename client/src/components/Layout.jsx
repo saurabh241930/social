@@ -24,9 +24,9 @@ export default function Layout({ children }) {
         <Grid item xs={1} lg={2}>
           <LeftSidebar />
         </Grid>
-        <Grid item xs={11} lg={10}>
+        <Grid item xs={11} lg={10} >
           <Grid container>
-            <Grid item xs={12} lg={8}>
+            <Grid item xs={12} lg={8} style={{backgroundColor:'white'}}>
               <Box
                 sx={{
                   height: "100vh",

@@ -8,7 +8,7 @@ router.get("/:pageno", async (req, res) => {
     const userId = req.user._id;
     const page = parseInt(req.params.pageno)
     const limit = 3
-    const skip = (page !== 1)? page*limit : 0  
+    const skip =  (page  - 1)*limit 
 
     const posts = await Post.find()
       .skip(skip)
@@ -37,7 +37,7 @@ router.get("/:pageno", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/post/:id", async (req, res) => {
   try {
     const userId = req.user._id;
     const id = req.params.id;
@@ -45,6 +45,9 @@ router.get("/:id", async (req, res) => {
     if (post.likes.includes(userId)) {
       post.isLiked = true;
     }
+
+
+    console.log("KKK",post);
 
     res.status(200).json({
       response: {
@@ -68,6 +71,7 @@ router.post("/", async (req, res) => {
       handle: req.user.handle,
       _id: req.user._id,
     };
+    console.log(req.body);
     const post = await new Post({ author, ...req.body });
     post.author = author;
     await post.save();

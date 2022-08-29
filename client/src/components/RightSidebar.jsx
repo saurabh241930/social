@@ -3,7 +3,8 @@ import { Input, Typography, Grid, CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import WhoToFollow from "./WhoToFollow";
+import WhoToFollow from "./Huddle";
+import { Headset } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { getFollowings } from "../redux/followSlice";
 
@@ -152,7 +153,7 @@ export default function RightSidebar() {
           }}
         >
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Who to follow
+            Huddle <Headset/>
           </Typography>
           <Box textAlign="center" marginTop="1rem">
             {(userStatus === "loading" || followingStatus === "loading") && (

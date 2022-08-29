@@ -19,13 +19,15 @@ export const getPosts = createAsyncThunk("post/getPosts", async (pageno) => {
 export const getPostDetails = createAsyncThunk(
   "post/getPostDetails",
   async (id) => {
-    const { data } = await axios.get("/api/posts/" + id);
+    const { data } = await axios.get("/api/posts/post/" + id);
+    console.log(data);
     return data;
   }
 );
 
 export const getComments = createAsyncThunk("post/getComments", async (id) => {
   const { data } = await axios.get("/api/comments/" + id);
+  console.log(data);
   return data;
 });
 
@@ -46,7 +48,12 @@ export const postSlice = createSlice({
     },
     [getPosts.fulfilled]: (state, action) => {
       state.status = "success";
-      state.posts = [...state.posts,...action.payload.response.posts] ;
+
+      const curr_state_obj = {}
+      const res_obj = {}
+      state.posts.map(e => curr_state_obj[e._id] = e)
+      action.payload.response.posts.map(e => res_obj[e._id] = e)
+      state.posts = Object.values(Object.assign(curr_state_obj,res_obj)) ;
     },
     [getPosts.rejected]: (state, action) => {
       state.status = "failed";

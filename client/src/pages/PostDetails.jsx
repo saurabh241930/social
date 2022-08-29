@@ -100,9 +100,9 @@ export default function PostDetails() {
             <Box>
               <Grid container alignItems="center">
 
-                {(postDetails.imageUrl !== "") &&
+                {(postDetails?.imageUrl !== "") &&
                   <Grid item flexGrow="1">
-                    <img src={postDetails.imageUrl} alt="r" style={{ maxHeight: "100%", maxWidth: "100%" }} />
+                    <img src={postDetails?.imageUrl} alt="r" style={{ maxHeight: "100%", maxWidth: "100%" }} />
                   </Grid>
                 }
 
@@ -113,16 +113,16 @@ export default function PostDetails() {
                     </Grid>
                     <Grid item>
                       <Typography sx={{ fontSize: "16px", fontWeight: "500" }}>
-                        {postDetails.author && postDetails.author.name}
+                        {postDetails?.author && postDetails?.author.name}
                       </Typography>
                       <Typography sx={{ fontSize: "15px", color: "#555" }}>
-                        @{postDetails.author && postDetails.author.handle}
+                        @{postDetails?.author && postDetails?.author.handle}
                       </Typography>
                     </Grid>
                     <Grid item>
                       {status === "success" &&
-                        postDetails.author &&
-                        _id === postDetails.author._id && (
+                        postDetails?.author &&
+                        _id === postDetails?.author._id && (
                           <IconButton
                             aria-expanded={open ? "true" : undefined}
                             onClick={(e) => {
@@ -159,27 +159,27 @@ export default function PostDetails() {
             </Box>
             <Box>
               <Typography sx={{ fontSize: "20px" }}>
-                {postDetails.text}
+                {postDetails?.text}
               </Typography>
             </Box>
             <Box display="flex" padding="1rem 0" borderBottom="1px solid #ccc">
               <Typography sx={{ fontSize: "14px", mr: "6px", color: "#555" }}>
                 {postDetails &&
-                  postDetails.createdAt &&
-                  format(new Date(postDetails.createdAt), "HH:mm a")}
+                  postDetails?.createdAt &&
+                  format(new Date(postDetails?.createdAt), "HH:mm a")}
               </Typography>
               <Typography sx={{ fontSize: "14px", mr: "6px", color: "#555" }}>
                 .
               </Typography>
               <Typography sx={{ fontSize: "14px", mr: "6px", color: "#555" }}>
                 {postDetails &&
-                  postDetails.createdAt &&
-                  format(new Date(postDetails.createdAt), "MMM dd yyyy")}
+                  postDetails?.createdAt &&
+                  format(new Date(postDetails?.createdAt), "MMM dd yyyy")}
               </Typography>
             </Box>
             <Box display="flex" padding="1rem 0" borderBottom="1px solid #ccc">
               <Typography sx={{ fontSize: "14px", mr: "6px", color: "#555" }}>
-                <strong>{postDetails.likes && postDetails.likes.length}</strong>{" "}
+                <strong>{postDetails?.likes && postDetails?.likes.length}</strong>{" "}
                 Likes
               </Typography>
             </Box>
@@ -196,7 +196,7 @@ export default function PostDetails() {
                 <SyncIcon fontSize="small" />
               </IconButton>
               <IconButton onClick={handleLike} size="small">
-                {postDetails.isLiked ? (
+                {postDetails?.isLiked ? (
                   <FavoriteIcon fontSize="small" />
                 ) : (
                   <FavoriteBorderIcon fontSize="small" />

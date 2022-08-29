@@ -11,9 +11,6 @@ const theme = createTheme({});
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-console.log(
-  "Hey Developer,\n\nHope you're doing fine.\nThanks for stopping by.\n\n@wasifbaliyan"
-);
 
 ReactDOM.render(
   <React.StrictMode>
